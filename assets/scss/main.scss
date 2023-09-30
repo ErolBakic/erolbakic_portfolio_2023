@@ -29,6 +29,11 @@ $paragraf: 'Onest', sans-serif;
             margin-top: 20px;
         }
     }
+    @media only screen and (max-width: 599px){
+        ol,ul{
+            padding-left: 20px;
+        }
+    }
 }
 
 .container{
@@ -37,6 +42,9 @@ $paragraf: 'Onest', sans-serif;
     margin: 0 auto;
     @media only screen and (max-width: 1640px){
         max-width: 1200px;
+    }
+    @media only screen and (max-width: 999px){
+        max-width: 600px;
     }
 }
 
@@ -61,7 +69,7 @@ $paragraf: 'Onest', sans-serif;
 
 .main-title{
     font-family: $heading;
-    font-size: 250px;
+    font-size: 220px;
     display: flex;
     flex-direction: column;
     .firstname,
@@ -99,30 +107,58 @@ $paragraf: 'Onest', sans-serif;
             .col-1,
             .col-2{
                 width: 100%;
+                height: 100%;
+                flex: 1;
+            }
+            .col-1{
+                display: flex;
+                align-items: flex-end;
             }
             .col-2{
                 max-width: 500px;
+                @media only screen and (max-width: 999px){
+                    min-width: auto;
+                }
             }
             .header__nav{
                 position: absolute;
                 top: 40px;
-                left: 0;
-                right: 60px;
-                display: flex;
-                justify-content: flex-end;
+                left: 20px;
+                right: 20px;
+                @media only screen and (max-width: 499px){
+                    font-size: 9vw;
+                    .nav > ul{
+                        justify-content: space-between;
+                    }
+                }
             }
             .header__text{
-                transform: translateY(40px);
                 height: auto;
+                margin-top: 0;
+                transform: none;
             }
             .header__title{
                 position: relative;
-                transform: translateY(40px);
+                transform: translateY(-40px);
             }
             .header__profile{
                 height: auto;
+                position: initial;
                 .main-title{
-                    font-size: 100px;
+                    font-size: 120px;
+                    @media only screen and (max-width: 430px){
+                        font-size: 30vw;
+                    }
+                }
+                .profile{
+                    transform: translateY(100px);
+                }
+            }
+        }
+        @media only screen and (max-width: 999px){
+            .header__profile{
+                .profile{
+                    display: none;
                 }
             }
         }
@@ -221,6 +257,9 @@ $paragraf: 'Onest', sans-serif;
     @media only screen and (max-width: 1640px){
         font-size: 40px;
     }
+    @media only screen and (max-width: 499px){
+        font-size: 9vw;
+    }
     svg{
         height: 50px;
         margin-right: 20px;
@@ -278,7 +317,7 @@ $paragraf: 'Onest', sans-serif;
 }
 
 .main,
-.cases,{
+.cases{
     &__content{
         @media only screen and (max-width: 1250px){
             flex-direction: column;
@@ -288,6 +327,7 @@ $paragraf: 'Onest', sans-serif;
             .col-2{
                 width: 100%;
                 max-width: none;
+                min-width: auto;
                 margin-left: 0;
                 margin-right: 0;
                 .main__text,
@@ -299,14 +339,36 @@ $paragraf: 'Onest', sans-serif;
                 margin-top: 40px;
             }
         }
+        @media only screen and (max-width: 999px){
+            .col-1,
+            .col-2{
+                .main__text,
+                .cases__text{
+                    padding: 40px;
+                }
+            }
+        }
+        @media only screen and (max-width: 599px){
+            .col-1,
+            .col-2{
+                .main__text,
+                .cases__text{
+                    padding-left: 20px;
+                    padding-right: 20px;
+                }
+            }
+        }
     }
     .cases__content{
         flex-direction: row;
         align-items: center;
         .col-1{
             .cases__text{
-                padding-left: 60px !important;
+                padding-left: 120px;
                 padding-right: 20px;
+                @media only screen and (max-width: 1250px){
+                    padding-left: 60px;
+                }
                 .title{
                     margin-bottom: 0;
                 }
@@ -319,6 +381,32 @@ $paragraf: 'Onest', sans-serif;
             .cases__text{
                 padding-left: 20px;
                 padding-right: 20px;
+            }
+        }
+        @media only screen and (max-width: 999px){
+            flex-direction: column;
+            .col-1,
+            .col-2{
+                .cases__text{
+                    padding-left: 40px !important;
+                } 
+            }
+            .col-2{
+                .cases__text{
+                    .slider-nav{
+                        justify-content: flex-start;
+                    }
+                }
+            }
+        }
+        @media only screen and (max-width: 599px){
+            flex-direction: column;
+            .col-1,
+            .col-2{
+                .cases__text{
+                    padding-left: 0 !important;
+                    padding-right: 0 !important;
+                } 
             }
         }
     }
@@ -353,6 +441,22 @@ $paragraf: 'Onest', sans-serif;
 
 .cases{
     background-color: $black;
+    @media only screen and (max-width: 999px){
+        margin-top: -60px;
+        position: relative;
+        z-index: 1;
+        &::after{
+            content: '';
+            width: 100%;
+            height: 60px;
+            z-index: 0;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #191A1B;
+        }
+    }
     &__content{
         padding-top: 20px;
         padding-bottom: 20px;
@@ -385,6 +489,10 @@ $paragraf: 'Onest', sans-serif;
                     border-radius: 5px;
                     cursor: pointer;
                     z-index: 1;
+                    @media only screen and (max-width: 499px){
+                        width: 50px;
+                        height: 50px;
+                    }
                     &::after{
                         content: '';
                         width: 14px;
@@ -419,20 +527,26 @@ $paragraf: 'Onest', sans-serif;
     &__example{
         border-radius: 5px;
         .case{
-            @media only screen and (max-width: 1250px){
-                margin-left: 20px;
-                margin-right: 20px;
-            }
             display: flex;
             flex-direction: column;
             padding: 80px 120px;
-            height: 500px;
-            background-size: 100%;
-            object-fit: cover;
+            height: 600px;
+            background-size: cover;
             background-position: 50%;
+            background-repeat: no-repeat;
             border-radius: 5px;
             position: relative;
             z-index: 1;
+            @media only screen and (max-width: 1250px){
+                margin-left: 20px;
+                margin-right: 20px;
+                padding-left: 60px;
+                padding-right: 60px;
+            }
+            @media only screen and (max-width: 999px){
+                padding: 40px;
+                height: auto;
+            }
             .title{
                 display: flex;
                 flex-direction: column;
@@ -483,6 +597,9 @@ $paragraf: 'Onest', sans-serif;
 
 .footer{
     position: relative;
+    @media only screen and (max-width: 999px){
+        z-index: 2;
+    }
     &::before{
         content: '';
         background-color: #191A1B;
@@ -491,6 +608,9 @@ $paragraf: 'Onest', sans-serif;
         bottom: 100%;
         height: 60px;
         z-index: 0;
+        @media only screen and (max-width: 999px){
+            content: none;
+        }
     }
     background-color: #191A1B;
     &__content{
@@ -499,14 +619,38 @@ $paragraf: 'Onest', sans-serif;
         padding-bottom: 80px;
         color: $white;
         font-family: $paragraf;
+        @media only screen and (max-width: 999px){
+            flex-direction: column;
+            padding-top: 40px;
+            padding-bottom: 40px;
+        }
         .col-1{
+            @media only screen and (max-width: 1250px){
+                flex: 1;
+            }
             .footer__text{
                 padding: 20px 120px;
                 @include textFormat();
+                @media only screen and (max-width: 999px){
+                    padding-left: 60px;
+                    padding-right: 60px;
+                    padding-top: 0;
+                    padding-bottom: 0;
+                }
+                @media only screen and (max-width: 599px){
+                    padding-left: 20px;
+                    padding-right: 20px;
+                }
             }
         }
         .col-2{
             position: relative;
+            @media only screen and (max-width: 1250px){
+                flex: 1;
+            }
+            @media only screen and (max-width: 999px){
+                min-width: auto;
+            }
             &::before{
                 content: '';
                 width: 1px;
@@ -515,12 +659,26 @@ $paragraf: 'Onest', sans-serif;
                 position: absolute;
                 left: 0;
                 bottom: 0;
+                @media only screen and (max-width: 999px){
+                    content: none;
+                }
             }
             .footer__text{
                 padding: 20px 80px;
+                @media only screen and (max-width: 999px){
+                    padding-left: 60px;
+                    padding-right: 60px;
+                }
+                @media only screen and (max-width: 599px){
+                    padding-left: 20px;
+                    padding-right: 20px;
+                }
                 .contacts{
                     list-style: none;
                     margin-top: 60px;
+                    @media only screen and (max-width: 999px){
+                        margin-top: 20px;
+                    }
                     &__item{
                         &:nth-child(n+2){
                             margin-top: 40px
