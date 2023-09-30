@@ -16,7 +16,7 @@ $paragraf: 'Onest', sans-serif;
 
 @mixin textFormat{
     p, ol, ul, a, div{
-        line-height: 20px;
+        line-height: 24px;
         &:nth-child(n+2){
             margin-top: 20px;
         }
@@ -97,10 +97,12 @@ $paragraf: 'Onest', sans-serif;
     background-repeat: no-repeat;
     background-position: 100% 100%;
     &__content{
-        padding: 40px 20px;
+        padding: 40px 0;
         padding-bottom: 0;
         display: flex;
         @media only screen and (max-width: 1640px){
+            padding-left: 20px;
+            padding-right: 20px;
             height: 750px;
             flex-direction: column;
             position: relative;
@@ -151,11 +153,13 @@ $paragraf: 'Onest', sans-serif;
                     }
                 }
                 .profile{
-                    transform: translateY(100px);
+                    transform: translateY(20px);
                 }
             }
         }
         @media only screen and (max-width: 999px){
+            height: auto;
+            min-height: 750px;
             .header__profile{
                 .profile{
                     display: none;
@@ -243,6 +247,7 @@ $paragraf: 'Onest', sans-serif;
             font-size: 16px;
             line-height: 20px;
             width: calc(100% - 40px);
+            @include textFormat();
         }
     }
 }
@@ -547,6 +552,10 @@ $paragraf: 'Onest', sans-serif;
                 padding: 40px;
                 height: auto;
             }
+            @media only screen and (max-width: 599px){
+                padding-left: 20px;
+                padding-right: 20px;
+            }
             .title{
                 display: flex;
                 flex-direction: column;
@@ -647,6 +656,7 @@ $paragraf: 'Onest', sans-serif;
             position: relative;
             @media only screen and (max-width: 1250px){
                 flex: 1;
+                min-width: auto;
             }
             @media only screen and (max-width: 999px){
                 min-width: auto;
@@ -692,6 +702,8 @@ $paragraf: 'Onest', sans-serif;
                                 margin-right: 20px;
                             }
                             span{
+                                padding-left: 0;
+                                transition: .1s ease;
                                 .small-title{
                                     font-size: 30px;
                                     font-family: $heading;
@@ -700,6 +712,20 @@ $paragraf: 'Onest', sans-serif;
                                 }
                                 display: flex;
                                 flex-direction: column;
+                            }
+                            &:hover{
+                                span {
+                                    padding-left: 10px;
+                                    .small-title{
+                                        padding-left: 0;
+                                        color: $secondary;
+                                    }
+                                }
+                                svg{
+                                    path{
+                                        fill: $secondary;
+                                    }
+                                }
                             }
                         }
                     }

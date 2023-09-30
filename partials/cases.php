@@ -1,11 +1,13 @@
 <div class="cases" id="cases">
     <div class="cases__content container">
+
+    <?php $cases = get_post( get_field('cases_page', 'options') ) ?>
         
         <div class="col-1">
             <div class="cases__text">
                 <h3 class="title">
                     <?= file_get_contents('http://erolbakic.dk/wp-content/uploads/2023/09/Path-6.svg') ?>
-                    <span>Udvalgte Cases</span>
+                    <span><?= $cases->post_title ?></span>
                 </h3>
             </div>
         </div>
