@@ -12,58 +12,64 @@
             </div>
         </div>
 
+        <?php $caseList = get_field('cases_list', 'options') ?>
+
+        <?php if(count($caseList) > 0): ?>
         <div class="col-2">
             <nav class="cases__text cases__text--icons">
                 <ul class="slider-nav">
-                    <li>
-                        <button class="slider-nav__btn">
-                            <img src="http://erolbakic.dk/wp-content/uploads/2023/09/Image-2.svg" alt="aaa">
-                        </button>
-                    </li>
-                    <li>
-                        <button class="slider-nav__btn">
-                            <img src="http://erolbakic.dk/wp-content/uploads/2023/09/Image-2.svg" alt="aaa">
-                        </button>
-                    </li>
-                    <li>
-                        <button class="slider-nav__btn">
-                            <img src="http://erolbakic.dk/wp-content/uploads/2023/09/Image-2.svg" alt="aaa">
-                        </button>
-                    </li>
-                    <li>
-                        <button class="slider-nav__btn active">
-                            <img src="http://erolbakic.dk/wp-content/uploads/2023/09/Image-2.svg" alt="aaa">
-                        </button>
-                    </li>
+                    <?php foreach($caseList as $case): ?>
+                        <li>
+                            <button dat-goto="<?= $case ?>" class="slider-nav__btn active" style="background-color:<?= get_field('nav_color', $case) ?>">
+                                <img src="<?= get_field('nav_icon', $case) ?>" alt="<?= get_the_title($case) ?>">
+                            </button>
+                        </li>
+                    <?php endforeach ?>
                 </ul>
             </nav>
         </div>
+        <?php endif ?>
 
     </div>
 
-    <div class="cases__example container">
-        <div class="case" style="background-image: url('http://erolbakic.dk/wp-content/uploads/2023/09/Image-1-scaled.jpg')">
-            <h3 class="title title--white">Test</h3>
+    <?php if(count($caseList) > 0): ?>
 
-            <ul class="technologies">
-                <li class="technologies__item"><img class="technologies__img" src="http://erolbakic.dk/wp-content/uploads/2023/09/Path-9.svg" alt="a"></li>
-            </ul>
+        <?php $featured = $caseList[0] ?>
 
-            <div class="description">
-                <div class="description__content col-1">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla viverra ipsum et pulvinar faucibus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Phasellus rutrum nibh nibh, et ornare dui consectetur eget. Mauris ac pretium nunc. Proin vitae quam mi. Integer ornare aliquet augue pharetra dignissim. Maecenas ut turpis in ex placerat consequat.</p>
+        <div class="cases__example container">
+            <div class="case" style="background-image: url('<?= get_field('cover', $featured) ?>')">
+                <h3 class="title title--white"><?= get_the_title($featured) ?></h3>
+
+                <?php if(count( get_field('technologies', $featured) ) > 0): ?> 
+                    <ul class="technologies">
+                        <?php foreach(get_field('technologies', $featured) as $technology): ?>
+                            <li class="technologies__item" title="<?= $technology['billede']['title'] ?>">
+                                <?= file_get_contents( $technology['billede']['url'] ) ?>
+                            </li>
+                        <?php endforeach ?>
+                    </ul>
+                <?php endif ?>
+
+                <div class="description">
+                    <div class="description__content col-1">
+                        <?= get_the_content($featured) ?>
+                    </div>
                 </div>
-            </div>
 
-            <div class="btn">
-                <a href="#" class="btn__link">
-                    <span class="btn__gfx">
-                        <?= file_get_contents('http://erolbakic.dk/wp-content/uploads/2023/09/Path-13.svg') ?>
-                    </span>
-                    Gå til side
-                </a>
-            </div>
+                <?php if(count( get_field('externals', $featured) ) > 0): ?> 
+                <div class="btn">
+                    <?php foreach(get_field('externals', $featured) as $link): ?>
+                        <a target="_blank" href="<?= $link['goto']['url'] ?>" class="btn__link">
+                            <span class="btn__gfx">
+                                <?= file_get_contents('http://erolbakic.dk/wp-content/uploads/2023/09/Path-13.svg') ?>
+                            </span>
+                            <?= $link['goto']['title'] ?>
+                        </a>
+                    <?php endforeach ?>
+                </div>
+                <?php endif ?>
 
+            </div>
         </div>
-    </div>
+    <?php endif ?>
 </div>

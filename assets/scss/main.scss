@@ -15,6 +15,7 @@ $paragraf: 'Onest', sans-serif;
 }
 
 @mixin textFormat{
+    font-family: $paragraf;
     p, ol, ul, a, div{
         line-height: 24px;
         &:nth-child(n+2){
@@ -303,8 +304,25 @@ $paragraf: 'Onest', sans-serif;
                 fill: $white;
             }
         }
+        &:nth-child(n+2){
+            margin-left: 20px;
+        }
         @media only screen and (max-width: 1640px){
             font-size: 20px !important;
+        }
+    }
+    @media only screen and (max-width: 999px){
+        flex-direction: column;
+        align-items: center;
+        &__link{
+            padding: 10px 20px;
+            &:nth-child(n+2){
+                margin-left: 0;
+                margin-top: 20px;
+            }
+        }
+        a {
+            width: fit-content;
         }
     }
     &__gfx{
@@ -314,6 +332,9 @@ $paragraf: 'Onest', sans-serif;
         left: 0;
         right: 0;
         transform: translateX(30px);
+        @media only screen and (max-width: 999px){
+            display: none;
+        }
         svg{
             width: 20px;
             height: 20px;
@@ -489,7 +510,6 @@ $paragraf: 'Onest', sans-serif;
                     width: 70px;
                     height: 70px;
                     border: 0;
-                    background-color: red;
                     padding: 5px;
                     border-radius: 5px;
                     cursor: pointer;
@@ -579,18 +599,19 @@ $paragraf: 'Onest', sans-serif;
                         margin-left: 20px;
                     }
                 }
-                &__img{
+                svg{
                     height: 30px;
                     width: auto;
+                    path{
+                        fill: $white;
+                    }
                 }
             }
             .description{
                 color: $white;
-                font-family: $paragraf;
-                font-size: 16px;
+                @include textFormat();
                 display: flex;
                 flex: 1;
-                line-height: 20px;
                 flex-direction: column;
                 justify-content: flex-end;
                 &__content{
