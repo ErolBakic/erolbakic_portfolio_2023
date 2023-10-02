@@ -38,3 +38,55 @@ if( function_exists('acf_add_options_page') ) {
         'redirect'      => false
     ));
 }
+
+// Register REST API
+add_action('rest_api_init', 'register_route');
+function register_route(){
+    // route url: domain.com/wp-json/$namespace/$route
+    $namespace = 'cases';
+    $route     = 'fetch-case';
+
+    register_rest_route($namespace, $route, array(
+        'methods'   => 'POST',
+        'callback'  => 'endpoint_receive_case'
+    ));
+}
+
+// Endpoint - Receive case
+function endpoint_receive_case( $request = null  ){
+
+    // Init variables
+    $response   = array();
+    $parameters = $request->get_json_params();
+
+    $caseID = sanitize_text_field($parameters['caseID']);
+    
+    $error = new WP_Error();
+
+    // No case set
+    if(empty($caseID)){
+        $error->add(400, __("Der er sket en fejl! - #134256", 'wp-rest-user'), array('status' => 400));
+        return $error;
+    }
+
+    // Insert SVG code of technologies to arr
+    $technologies = [];
+    foreach( get_field('technologies', $caseID) as $technology ){
+        $technologies[ $technology['billede']['title'] ] = file_get_contents( $technology['billede']['url'] );
+    }
+
+    // Get post
+    $case = array(
+        'id'           => $caseID,
+        'title'        => get_the_title($caseID),
+        'content'      => get_post_field('post_content', $caseID),
+        'cover'        => get_field('cover', $caseID),
+        'technologies' => $technologies,
+        'links'        => get_field('externals', $caseID)
+    );
+
+    // Done
+    $response['code']    = 200;
+    $response['content'] = json_encode($case);
+    return new WP_REST_Response($response, 123);
+}

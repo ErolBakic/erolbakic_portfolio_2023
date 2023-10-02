@@ -17,10 +17,10 @@
         <?php if(count($caseList) > 0): ?>
         <div class="col-2">
             <nav class="cases__text cases__text--icons">
-                <ul class="slider-nav">
-                    <?php foreach($caseList as $case): ?>
+                <ul id="target-cases" data-action="<?= site_url('/wp-json/cases/fetch-case') ?>" class="slider-nav">
+                    <?php foreach($caseList as $itr => $case): ?>
                         <li>
-                            <button dat-goto="<?= $case ?>" class="slider-nav__btn active" style="background-color:<?= get_field('nav_color', $case) ?>">
+                            <button data-goto="<?= $case ?>" class="slider-nav__btn <?= $itr == 0 ? 'active' : '' ?>" style="background-color:<?= get_field('nav_color', $case) ?>">
                                 <img src="<?= get_field('nav_icon', $case) ?>" alt="<?= get_the_title($case) ?>">
                             </button>
                         </li>
@@ -41,7 +41,7 @@
         ?>
 
         <div class="cases__example container">
-            <div class="case <?= $type == 'video' ? 'case--video' : '' ?>" style="<?= $type == 'image' ? 'background-image: url(\'' . get_field('cover', $featured) . '\')' : '' ?>">
+            <div id="target-case" class="case <?= $type == 'video' ? 'case--video' : '' ?>" style="<?= $type == 'image' ? 'background-image: url(\'' . get_field('cover', $featured) . '\')' : '' ?>">
                 <h3 class="title title--white"><?= get_the_title($featured) ?></h3>
 
                 <?php if(count( get_field('technologies', $featured) ) > 0): ?> 
@@ -56,7 +56,7 @@
 
                 <div class="description">
                     <div class="description__content col-1">
-                        <?= get_the_content($featured) ?>
+                        <?= get_post_field('post_content', $featured) ?>
                     </div>
                 </div>
 
@@ -78,6 +78,29 @@
                 <?php endif ?>
 
             </div>
+
+            <div class="case loader">
+                <svg class="loader__spinner" xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 38 38">
+                    <defs>
+                        <linearGradient x1="8.042%" y1="0%" x2="65.682%" y2="23.865%" id="a">
+                            <stop stop-color="#fff" stop-opacity="0" offset="0%"/>
+                            <stop stop-color="#fff" stop-opacity=".631" offset="63.146%"/>
+                            <stop stop-color="#fff" offset="100%"/>
+                        </linearGradient>
+                    </defs>
+                    <g fill="none" fill-rule="evenodd">
+                        <g transform="translate(1 1)">
+                            <path d="M36 18c0-9.94-8.06-18-18-18" id="Oval-2" stroke="url(#a)" stroke-width="2">
+                                <animateTransform attributeName="transform" type="rotate" from="0 18 18" to="360 18 18" dur="0.9s" repeatCount="indefinite"/>
+                            </path>
+                            <circle fill="#fff" cx="36" cy="18" r="1">
+                                <animateTransform attributeName="transform" type="rotate" from="0 18 18" to="360 18 18" dur="0.9s" repeatCount="indefinite"/>
+                            </circle>
+                        </g>
+                    </g>
+                </svg>
+            </div>
+
         </div>
     <?php endif ?>
 </div>
