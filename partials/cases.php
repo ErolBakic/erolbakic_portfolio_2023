@@ -34,10 +34,14 @@
 
     <?php if(count($caseList) > 0): ?>
 
-        <?php $featured = $caseList[0] ?>
+        <?php 
+            $featured = $caseList[0];
+            $type = pathinfo( get_field('cover', $featured), PATHINFO_EXTENSION);
+            $type = in_array($type, ['webm', 'mp4']) ? 'video' : 'image';
+        ?>
 
         <div class="cases__example container">
-            <div class="case" style="background-image: url('<?= get_field('cover', $featured) ?>')">
+            <div class="case <?= $type == 'video' ? 'case--video' : '' ?>" style="<?= $type == 'image' ? 'background-image: url(\'' . get_field('cover', $featured) . '\')' : '' ?>">
                 <h3 class="title title--white"><?= get_the_title($featured) ?></h3>
 
                 <?php if(count( get_field('technologies', $featured) ) > 0): ?> 
@@ -67,6 +71,10 @@
                         </a>
                     <?php endforeach ?>
                 </div>
+                <?php endif ?>
+
+                <?php if($type == 'video'): ?>
+                    <video class="video" src="<?= get_field('cover', $featured) ?>" muted loop autoplay><video>
                 <?php endif ?>
 
             </div>
