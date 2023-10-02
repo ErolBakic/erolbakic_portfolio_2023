@@ -41,7 +41,7 @@
         ?>
 
         <div class="cases__example container">
-            <div id="target-case" class="case <?= $type == 'video' ? 'case--video' : '' ?>" style="<?= $type == 'image' ? 'background-image: url(\'' . get_field('cover', $featured) . '\')' : '' ?>">
+            <div id="target-case" class="case <?= $type == 'video' ? 'case--video' : '' ?>" style="background-image: url('<?= get_field('mobile_cover', $featured) ?>')">
                 <h3 class="title title--white"><?= get_the_title($featured) ?></h3>
 
                 <?php if(count( get_field('technologies', $featured) ) > 0): ?> 

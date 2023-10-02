@@ -81,6 +81,7 @@ function endpoint_receive_case( $request = null  ){
         'title'        => get_the_title($caseID),
         'content'      => get_post_field('post_content', $caseID),
         'cover'        => get_field('cover', $caseID),
+        'mobile_cover' => get_field('mobile_cover', $caseID),
         'technologies' => $technologies,
         'links'        => get_field('externals', $caseID)
     );

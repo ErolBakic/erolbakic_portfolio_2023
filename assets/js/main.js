@@ -111,9 +111,9 @@ window.addEventListener('DOMContentLoaded', () => {
             if(cover.substr(cover.lastIndexOf('.') + 1) == 'mp4' || cover.substr(cover.lastIndexOf('.') + 1) == 'webm'){
                 target.insertAdjacentHTML('beforeend', `<video class="video" src="${cover}" muted loop autoplay><video>`);
                 target.classList.add('case--video');
-            } else {
-                target.setAttribute('style', `background-image: url("${cover}")`);
             }
+
+            target.setAttribute('style', `background-image: url("${content.mobile_cover}")`);
 
             // Show case
             document.querySelector('.cases__example').classList.remove('cases__example--loading');
