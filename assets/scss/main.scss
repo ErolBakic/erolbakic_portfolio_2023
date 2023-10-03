@@ -17,6 +17,43 @@ $paragraf: 'Onest', sans-serif;
     }
 }
 
+.boost{
+    position: relative;
+    &::before{
+        content: '';
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 105vw;
+        height: 100vh;
+        animation-timing-function: ease-in-out;
+        animation-fill-mode: forwards;
+        animation-duration: 1s;
+        filter: opacity(100%);
+        background-image: url('https://erolbakic.dk/wp-content/uploads/2023/10/erolbakic.svg');
+        background-position: 50%;
+        background-repeat: no-repeat;
+        background-size: 200px;
+    }
+    &::before{
+        background-color: $primary;
+        animation-delay: .75s;
+        z-index: 100;
+        animation-name: boost;
+        pointer-events: none;
+    }
+}
+
+@keyframes boost {
+    0% {
+        filter: opacity(100%);
+    } 100% {
+        filter: opacity(0%);
+    }
+}
+
 @mixin textFormat{
     font-family: $paragraf;
     p, ol, ul, a, div{
@@ -583,14 +620,14 @@ $paragraf: 'Onest', sans-serif;
             transition: .5s ease;
             &--video::before{
                 content: '';
-                width: 100%;
+                width: 90vw;
                 height: 100%;
                 position: absolute;
                 left: 0;
                 top: 0;
                 bottom: 0;
                 background: inherit;
-                background: linear-gradient(90deg, rgba(0,0,0,.9) 0%,rgba(25,29,55,0) 100%);
+                background: linear-gradient(90deg, rgba(0,0,0,.9) 0%, rgba(25,29,55,0) 100%);
                 z-index: -1;
             }
             &--loading{

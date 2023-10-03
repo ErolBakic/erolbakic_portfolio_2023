@@ -5,7 +5,10 @@ if(!is_admin()){
     $theme = get_template_directory_uri();
 
     wp_enqueue_style('stylesheet', $theme . '/assets/css/main.min.css');
+    wp_enqueue_style('aosCSS', 'https://unpkg.com/aos@next/dist/aos.css');
+
     wp_enqueue_script('javascript', $theme . '/assets/js/main.min.js', null, 1.0, true);
+    wp_enqueue_script('aosJS', 'https://unpkg.com/aos@next/dist/aos.js');
 
     // Disable jQuery on front-end
     add_filter( 'wp_enqueue_scripts', 'change_default_jquery', PHP_INT_MAX );

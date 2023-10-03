@@ -55,16 +55,15 @@ window.addEventListener('DOMContentLoaded', () => {
     const wait = (callback) => {
         setTimeout(() => {
             callback();
-        }, 1000);
+        }, 500);
     }
 
     // Change case content
     const changeCase = (content) => {
         if(!content) return alert('Fejl!');
 
-        //
+        // Target variable
         const target = document.querySelector('#target-case');
-        document.querySelector(`.slider-nav__btn[data-goto="${content.id}"]`).classList.add('active');
 
         // Init wait
         wait(() => {
@@ -142,8 +141,44 @@ window.addEventListener('DOMContentLoaded', () => {
             target.setAttribute('style', `background-image: url("${content.mobile_cover}")`);
 
             // Show case
-            document.querySelector('.cases__example').classList.remove('cases__example--loading');
-            target.classList.remove('case--loading');
+            wait(() => {
+
+                // active nav
+                document.querySelector(`.slider-nav__btn[data-goto="${content.id}"]`).classList.add('active');
+
+                document.querySelector('.cases__example').classList.remove('cases__example--loading');
+                target.classList.remove('case--loading');
+            })
+            
         });
     }
+
+    // First time visitor
+    if(!localStorage.getItem('boost')){
+
+        // Title
+        document.querySelector('#target-maintitle').setAttribute('data-aos-delay', '900');
+        document.querySelector('#target-maintitle').setAttribute('data-aos', 'fade-up');
+
+        // Profile
+        document.querySelector('#target-profile').setAttribute('data-aos-delay', '1000');
+        document.querySelector('#target-profile').setAttribute('data-aos', 'fade-up');
+
+        // Content
+        document.querySelector('#target-header').setAttribute('data-aos-delay', '1100');
+        document.querySelector('#target-header').setAttribute('data-aos', 'fade-up');
+
+        wait(() => {
+            AOS.init({
+                disable: 'mobile', // accepts following values: 'phone', 'tablet', 'mobile', boolean, expression or function
+                duration: 1000, // values from 0 to 3000, with step 50ms
+            });
+            localStorage.setItem('boost', true);
+        })
+        
+    } else {
+        document.querySelector('#target-body').classList.remove('boost');
+    }
+
+    
 });

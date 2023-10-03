@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <?= wp_head() ?>
 </head>
-<body>
+<body id="target-body" class="boost">
     <?= get_header() ?>
 
     <?= get_template_part('partials/profile') ?>

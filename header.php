@@ -3,17 +3,17 @@
         
         <div class="col-1">
             <div class="header__profile">
-                <h1 class="header__title main-title">
+                <h1 id="target-maintitle" class="header__title main-title">
                     <span class="firstname"><?= get_field('header_firstname', 'options') ?></span>
                     <span class="lastname"><?= get_field('header_lastname', 'options') ?></span>
                 </h1>
-                <figure class="profile">
+                <figure class="profile" id="target-profile">
                     <img src="http://erolbakic.dk/wp-content/uploads/2023/09/figure.png" alt="Erol Bakic">
                 </figure>
             </div>
         </div>
 
-        <div class="col-2">
+        <div class="col-2" id="target-header">
             <div class="header__nav">
                 <nav class="nav" id="target-nav">
 
