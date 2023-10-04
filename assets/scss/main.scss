@@ -563,6 +563,10 @@ $paragraf: 'Onest', sans-serif;
                         width: 50px;
                         height: 50px;
                     }
+                    @media only screen and (max-width: 370px){
+                        width: 13vw;
+                        height: 13vw;
+                    }
                     &::after{
                         content: '';
                         width: 14px;

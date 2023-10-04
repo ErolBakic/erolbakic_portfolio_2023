@@ -60,18 +60,18 @@
                     </div>
                 </div>
 
-                <?php if(count( get_field('externals', $featured) ) > 0): ?> 
                 <div class="btn">
-                    <?php foreach(get_field('externals', $featured) as $link): ?>
-                        <a target="_blank" href="<?= $link['goto']['url'] ?>" class="btn__link">
-                            <span class="btn__gfx">
-                                <?= file_get_contents('http://erolbakic.dk/wp-content/uploads/2023/09/Path-13.svg') ?>
-                            </span>
-                            <?= $link['goto']['title'] ?>
-                        </a>
-                    <?php endforeach ?>
+                    <?php if(count( get_field('externals', $featured) ) > 0): ?> 
+                        <?php foreach(get_field('externals', $featured) as $link): ?>
+                            <a target="_blank" href="<?= $link['goto']['url'] ?>" class="btn__link">
+                                <span class="btn__gfx">
+                                    <?= file_get_contents('http://erolbakic.dk/wp-content/uploads/2023/09/Path-13.svg') ?>
+                                </span>
+                                <?= $link['goto']['title'] ?>
+                            </a>
+                        <?php endforeach ?>
+                    <?php endif ?>
                 </div>
-                <?php endif ?>
 
                 <?php if($type == 'video'): ?>
                     <video class="video" src="<?= get_field('cover', $featured) ?>" muted loop autoplay><video>
