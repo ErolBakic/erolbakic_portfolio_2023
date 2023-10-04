@@ -61,7 +61,7 @@
                 </div>
 
                 <div class="btn">
-                    <?php if(count( get_field('externals', $featured) ) > 0): ?> 
+                    <?php if( get_field('externals', $featured) && count( get_field('externals', $featured) ) > 0): ?> 
                         <?php foreach(get_field('externals', $featured) as $link): ?>
                             <a target="_blank" href="<?= $link['goto']['url'] ?>" class="btn__link">
                                 <span class="btn__gfx">
